@@ -1,4 +1,4 @@
-"use client"
+
 
 import { useRef, Suspense } from "react"
 import { motion, useScroll, useTransform } from "framer-motion"
@@ -33,7 +33,7 @@ function MorphingGeometry() {
 }
 
 function FloatingCrystals() {
-    const crystals = Array.from({ length: 5 }, (_, i) => ({
+    const crystals = Array.from({ length: 5 }, (_) => ({
         position: [(Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10, (Math.random() - 0.5) * 10] as [
             number,
             number,

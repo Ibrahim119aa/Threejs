@@ -94,7 +94,7 @@ function DNA() {
 }
 
 function FloatingCubes() {
-  const cubes = Array.from({ length: 20 }, (_, i) => ({
+  const cubes = Array.from({ length: 20 }, (_) => ({
     position: [(Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20, (Math.random() - 0.5) * 20 - 10] as [
       number,
       number,
