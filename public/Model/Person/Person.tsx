@@ -8,9 +8,12 @@ Title: European Male head Free Low Poly 3D Model
 */
 
 import * as THREE from 'three'
-import React from 'react'
+
 import { useGLTF } from '@react-three/drei'
-import { GLTF } from 'three-stdlib'
+import { AnimationClip } from 'three'
+import type { GLTF } from 'three-stdlib'
+
+
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -21,13 +24,14 @@ type GLTFResult = GLTF & {
     ['Material.004']: THREE.MeshStandardMaterial
     ['Material.002']: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
+  animations: AnimationClip[]
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/Model/Person/Person.gltf') as GLTFResult
+export default function Model() {
+ const { nodes, materials } = useGLTF('/Model/Person/Person.gltf') as unknown as GLTFResult;
+
   return (
-    <group {...props} dispose={null}>
+    <group  dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <mesh geometry={nodes.Object_2.geometry} material={materials['Material.004']} />
         <mesh geometry={nodes.Object_3.geometry} material={materials['Material.002']} />

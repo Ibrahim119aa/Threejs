@@ -12,6 +12,7 @@ import React from 'react'
 import { useGraph } from '@react-three/fiber'
 import { useGLTF } from '@react-three/drei'
 import { GLTF, SkeletonUtils } from 'three-stdlib'
+import { AnimationClip } from 'three';
 
 type GLTFResult = GLTF & {
   nodes: {
@@ -25,15 +26,16 @@ type GLTFResult = GLTF & {
     arm_motionplatform: THREE.MeshStandardMaterial
     arm_glasstop: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
+  animations: AnimationClip[]
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
+export default function Model() {
   const { scene } = useGLTF('/Model/Computer_Animate/ComputerAnimate.gltf')
   const clone = React.useMemo(() => SkeletonUtils.clone(scene), [scene])
-  const { nodes, materials } = useGraph(clone) as GLTFResult
+  const { nodes, materials } = useGraph(clone) as unknown as GLTFResult;
+  
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]} scale={0.01}>
           <primitive object={nodes._rootJoint} />

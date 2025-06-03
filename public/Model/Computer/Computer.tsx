@@ -2,8 +2,9 @@
 
 import * as THREE from 'three'
 import { useGLTF } from '@react-three/drei'
-import { GLTF} from 'three-stdlib'
+import type { GLTF } from 'three-stdlib'
 
+import { AnimationClip } from 'three'
 type GLTFResult = GLTF & {
   nodes: {
     MaterialFBXASC032FBXASC0352142146907: THREE.Mesh
@@ -15,13 +16,13 @@ type GLTFResult = GLTF & {
     MaterialFBXASC032FBXASC03511186: THREE.MeshStandardMaterial
     MaterialFBXASC032FBXASC0352142146802: THREE.MeshStandardMaterial
   }
-  animations: GLTFAction[]
+  animations: AnimationClip[]
 }
 
-export default function Model(props: JSX.IntrinsicElements['group']) {
-  const { nodes, materials } = useGLTF('/Model/Computer/Computer.gltf') as GLTFResult
+export default function Model() {
+  const { nodes, materials } = useGLTF('/Model/Computer/Computer.gltf') as unknown as GLTFResult
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null}>
       <group rotation={[-Math.PI / 2, 0, 0]}>
         <group rotation={[Math.PI / 2, 0, 0]}>
           <group position={[-39.769, 2.09, -28.414]} rotation={[-1.682, -0.056, 0.342]} scale={[-0.245, 0.1, 0.139]}>
